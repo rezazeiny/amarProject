@@ -1,5 +1,5 @@
 library("shiny")
-source("C:\\Users\\Reza\\Desktop\\RProject\\distributionFunctions.R")
+source("distributionFunctions.R")
 # Define UI ----
 ui <- fluidPage(
   titlePanel("Select your distribution"),
@@ -44,17 +44,17 @@ ui <- fluidPage(
 # Define server logic ----
 server <- function(input, output){
   v <- reactiveValues(doPlot = FALSE)
-  
+
   observeEvent(input$go, {
     # 0 will be coerced to FALSE
     # 1+ will be coerced to TRUE
     v$doPlot <- input$go
   })
-  
+
   observeEvent(input$tabset, {
     v$doPlot <- FALSE
-  })  
-  
+  })
+
   output$plot <- renderPlot({
     if (v$doPlot == FALSE) return()
     isolate({
